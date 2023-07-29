@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
+  
 
       <div className='pages'>
         <Routes>
@@ -36,7 +36,7 @@ function App() {
             element={<Addhouse />}
           />
           <Route
-            path="/viewhouse"
+            path="/viewhouse/:id"
             element={<Viewhouse />}
           />
         </Routes>

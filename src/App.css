@@ -1,0 +1,16 @@
+
+/* Example CSS */
+.custom-card {
+    width: '50%';
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Media query for mobile devices */
+  @media (max-width: 767px) {
+    .custom-card {
+      width: 100%;
+    }
+  }
+  
