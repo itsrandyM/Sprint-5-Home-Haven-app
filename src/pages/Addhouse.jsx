@@ -1,6 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Form, Button, TextArea } from "semantic-ui-react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+
 
 const Addhouse = () => {
   const navigate = useNavigate();
@@ -30,98 +34,59 @@ const Addhouse = () => {
   };
 
   return (
-    <div className="Addhouse">
-      <h2>Add House</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="images">Images (Separate URLs with commas) 
-          <input
-            type="text"
-            name="images"
-            id="images"
-            {...register("images")}
-          />
-        </label>
-        <label htmlFor="title">Title 
-          <input
-            type="text"
-            name="title"
-            id="title"
-            {...register("title")}
-          />
-        </label>
-        <label htmlFor="owner">Owner 
-          <input
-            type="text"
-            name="owner"
-            id="owner"
-            {...register("owner")}
-          />
-        </label>
-        <label htmlFor="price">Price 
-          <input
-            type="number"
-            name="price"
-            id="price"
-            {...register("price")}
-          />
-        </label>
-        <label htmlFor="location">Location 
-          <input
-            type="text"
-            name="location"
-            id="location"
-            {...register("location")}
-          />
-        </label>
-        <label htmlFor="bedrooms">Bedrooms 
-          <input
-            type="number"
-            name="bedrooms"
-            id="bedrooms"
-            {...register("bedrooms")}
-          />
-        </label>
-        <label htmlFor="bathrooms">Bathrooms 
-          <input
-            type="number"
-            name="bathrooms"
-            id="bathrooms"
-            {...register("bathrooms")}
-          />
-        </label>
-        <label htmlFor="description">Description 
-          <textarea
-            name="description"
-            id="description"
-            {...register("description")}
-          />
-        </label>
-        <label htmlFor="phoneNumber">Phone Number 
-          <input
-            type="tel"
-            name="phoneNumber"
-            id="phoneNumber"
-            {...register("phoneNumber")}
-          />
-        </label>
-        <label htmlFor="whatsApp">WhatsApp 
-          <input
-            type="tel"
-            name="whatsApp"
-            id="whatsApp"
-            {...register("whatsApp")}
-          />
-        </label>
-        <label htmlFor="socials">Socials (Separate URLs with commas) 
-          <input
-            type="text"
-            name="socials"
-            id="socials"
-            {...register("socials")}
-          />
-        </label>
-        <button type="submit">Add House</button>
-      </form>
+    
+    <div className="Addhouse" style={{margin: '30px' }}>
+      <Navbar />
+      <h2 style={{ color: 'whitesmoke', fontSize: "24px", fontWeight: "bold", marginBottom: "20px" }}>Add your Property details Here </h2>
+      <Form inverted onSubmit={handleSubmit(onSubmit)}>
+        <Form.Field>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }}>Images (Separate URLs with commas)</label>
+          <input type="text" name="images" {...register("images")} />
+        </Form.Field>
+        <Form.Field>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }}>Title</label>
+          <input type="text" name="title" {...register("title")} />
+        </Form.Field>
+        <Form.Field>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }}>Owner</label>
+          <input type="text" name="owner" {...register("owner")} />
+        </Form.Field>
+        <Form.Field>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }}>Price</label>
+          <input type="number" name="price" {...register("price")} />
+        </Form.Field>
+        <Form.Field>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }}>Location</label>
+          <input type="text" name="location" {...register("location")} />
+        </Form.Field>
+        <Form.Field>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }}>Bedrooms</label>
+          <input type="number" name="bedrooms" {...register("bedrooms")} />
+        </Form.Field>
+        <Form.Field>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }}>Bathrooms</label>
+          <input type="number" name="bathrooms" {...register("bathrooms")} />
+        </Form.Field>
+        <Form.Field>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }}>Description</label>
+          <TextArea name="description" {...register("description")} />
+        </Form.Field>
+        <Form.Field>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }}>Phone Number</label>
+          <input type="tel" name="phoneNumber" {...register("phoneNumber")} />
+        </Form.Field>
+        <Form.Field>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }}>WhatsApp</label>
+          <input type="tel" name="whatsApp" {...register("whatsApp")} />
+        </Form.Field>
+        <Form.Field>
+          <label style={{ fontSize: "16px", fontWeight: "bold" }}>Socials (Separate URLs with commas)</label>
+          <input type="text" name="socials" {...register("socials")} />
+        </Form.Field>
+        <Button positive type="submit" style={{ width: '30%',  fontWeight: "bold", padding: "10px 20px", margin:'5px' }}>Add Listing </Button>
+        <Button negative type='reset' style={{ width: '30%',  fontWeight: "bold", padding: "10px 20px" }}> Cancel </Button>
+      </Form>
+      <Footer />
     </div>
   );
 };

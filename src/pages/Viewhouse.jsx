@@ -1,71 +1,92 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Image, Icon, Container } from 'semantic-ui-react';
-import '../App.css';
+import { Image, Icon, Container, Message } from 'semantic-ui-react';
+import Navbar from '../components/Navbar';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import Footer from '../components/Footer';
 
 const Viewhouse = () => {
-  const [houses, setHouses] = useState(null);
-
-  const fetchHouses = async () => {
-    try {
-      const response = await fetch('http://localhost:4000');
-      if (response.status === 200) {
-        const json = await response.json();
-        setHouses(json);
-      }
-    } catch (error) {
-      console.error('Error fetching Houses:', error.message);
-    }
-  };
-
+  const { id } = useParams();
+  const [house, setHouse] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
   useEffect(() => {
-    fetchHouses();
-  }, []);
+    async function fetchHouse() {
+      try {
+        const response = await axios.get(`http://localhost:4000/${id}`);
+        if (response.status === 200) {
+          setHouse(response.data);
+        } else {
+          setError('Could not fetch house data.');
+        }
+      } catch (error) {
+        console.error('Error fetching Houses:', error.message);
+        setError('An error occurred while fetching data.');
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchHouse();
+  }, [id]);
 
-  const renderHouseCards = () => {
-    if (!houses) {
-      return null;
+  const renderHouseContent = () => {
+    if (loading) {
+      return <p>Loading...</p>;
     }
 
-    return houses.map((house) => (
-      <Card key={house._id} className='custom-card'>
-        <Image src={house.images} wrapped ui={false} style={{ objectFit: 'cover' }} />
-        <Card.Content>
-          <Card.Header>{house.title}</Card.Header>
-          <Card.Meta>Owner: {house.owner}</Card.Meta>
-          <Card.Description>
+    if (error) {
+      return <Message negative>{error}</Message>;
+    }
+
+    if (!house) {
+      return <Message negative>No house data available.</Message>;
+    }
+
+    return (
+      <div>
+        <div className='imagediv' style={{ textAlign: 'center', marginBottom: '20px', height: '300px' }}>
+          <Image src={house.images} wrapped ui={false} style={{ objectFit: 'cover', width: '100%', height: '100%' }} size='medium' />
+        </div>
+        <div className='contentdiv' style={{ textAlign: 'center' }}>
+          <h2>{house.title}</h2>
+          <p>Owner: {house.owner}</p>
+          <p>
             <Icon name="map marker alternate" size="large" />
             <span>{house.location}</span>
-          </Card.Description>
-          <Card.Meta>Bedrooms: {house.bedrooms}</Card.Meta>
-          <Card.Meta>Bathrooms: {house.bathrooms}</Card.Meta>
-          <Card.Meta>Price: ${house.price}</Card.Meta>
-          <Card.Description>Description: {house.description}</Card.Description>
+          </p>
+          <p>Bedrooms: {house.bedrooms}</p>
+          <p>Bathrooms: {house.bathrooms}</p>
+          <p>Price: ${house.price}</p>
+          <p>Description: {house.description}</p>
           {house.phoneNumber && (
-            <Card.Description>
+            <p>
               <Icon name="phone" />
               {house.phoneNumber}
-            </Card.Description>
+            </p>
           )}
           {house.whatsApp && (
-            <Card.Description>
+            <p>
               <Icon name="whatsapp" />
               {house.whatsApp}
-            </Card.Description>
+            </p>
           )}
-        </Card.Content>
-      </Card>
-    ));
+        </div>
+      </div>
+    );
   };
 
   return (
-    <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <div className="Home" style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', background: '#f2f2f2', padding: '20px', borderRadius: '8px' }}>
-        {renderHouseCards()}
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <Navbar />
+      <div style={{ flexGrow: 1, background: '#f2f2f2', padding: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Container style={{ maxWidth: '600px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', padding: '20px', borderRadius: '8px' }}>
+          {renderHouseContent()}
+        </Container>
       </div>
-    </Container>
+      <Footer />
+    </div>
   );
 };
 
-
-
-export default Viewhouse
+export default Viewhouse;

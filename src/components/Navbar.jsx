@@ -4,11 +4,17 @@ import { Link } from 'react-router-dom';
 import MenuExampleInvertedSecondary from './Menu';
 
 const Navbar = () => {
+  const headerStyle = {
+    fontFamily: "'Abel', sans-serif",
+    fontWeight: 800,
+    fontSize: '3rem', 
+    color: 'red',
+  }
   return (
     <div className="navbar">
       <Container>
         <Link to="/">
-          <Header as="h1" color="red">
+          <Header as="h1" style={headerStyle} >
             Home Haven
           </Header>
         </Link>

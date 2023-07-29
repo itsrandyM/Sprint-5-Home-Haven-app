@@ -3,6 +3,7 @@ import { Card, Image, Icon, Container, ImageGroup } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Home = () => {
   const [houses, setHouses] = useState(null);
@@ -25,7 +26,7 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <Container style={{ width: '50%', margin: '40px auto 0' }}>
+      <Container style={{ width: '50%', margin: '40px auto 40px' }}>
         <div className="Home">
           {houses &&
             houses.map((house) => (
@@ -52,6 +53,7 @@ const Home = () => {
             ))}
         </div>
       </Container>
+      <Footer />
     </div>
   );
 };
