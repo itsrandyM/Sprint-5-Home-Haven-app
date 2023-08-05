@@ -31,7 +31,7 @@ const MenuExampleInvertedSecondary = () => {
           <Menu.Item
             as={Link}
             to="/addHouse"
-            name="Add a Listing"
+            name="Add Listing"
             active={pathname === '/addHouse'}
           />
         </Menu.Menu>

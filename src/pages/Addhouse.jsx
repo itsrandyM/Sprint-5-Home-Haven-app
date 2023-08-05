@@ -13,7 +13,7 @@ const Addhouse = () => {
   const onSubmit = async (data) => {
     try {
       // Send the form data to the API endpoint here
-      const response = await fetch("http://localhost:4000/addHouse", {
+      const response = await fetch("https://backend-green-eta.vercel.app/addHouse", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

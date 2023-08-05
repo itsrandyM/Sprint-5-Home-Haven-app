@@ -17,7 +17,7 @@ const Login = () => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/login', loginData);
+      const response = await axios.post('https://backend-green-eta.vercel.app/login', loginData);
       if (response.status === 200) {
         alert('Login successful!');
         navigate('/')

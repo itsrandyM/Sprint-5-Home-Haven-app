@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(() => {
     const fetchHouses = async () => {
       try {
-        const response = await fetch('http://localhost:4000');
+        const response = await fetch('https://backend-green-eta.vercel.app');
         const json = await response.json();
         if (response.ok) {
           setHouses(json);
