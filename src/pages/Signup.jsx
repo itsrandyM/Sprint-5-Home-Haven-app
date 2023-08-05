@@ -25,10 +25,10 @@ const Signup = () => {
   const handleSubmit = async(e) => {
     e.preventDefault()
     try{
-      const response = await axios.post('https://backend-green-eta.vercel.app/signup', signUp)
+      const response = await axios.post('http://localhost:4000/signup', signUp)
       if(response.status === 201) {
         alert('Sign up successful! Please login.')
-        history.push('"https://backend-green-eta.vercel.app/login')
+        history.push('"http://localhost:4000/login')
       }
     }
     catch(error){

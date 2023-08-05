@@ -14,7 +14,7 @@ const Viewhouse = () => {
   useEffect(() => {
     async function fetchHouse() {
       try {
-        const response = await axios.get(`https://backend-green-eta.vercel.app/${id}`);
+        const response = await axios.get(`http://localhost:4000/${id}`);
         if (response.status === 200) {
           setHouse(response.data);
         } else {
