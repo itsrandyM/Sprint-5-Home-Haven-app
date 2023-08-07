@@ -24,7 +24,7 @@ const Footer = () => {
                 Home Haven
               </Header>
               <p>
-                Seeking to offer the best online platform for hpuse hunting and Real Estate services
+                Seeking to offer the best online platform for house hunting and Real Estate services
               </p>
             </Grid.Column>
           </Grid.Row>
